@@ -85,3 +85,6 @@ print("Search the parameters using the previous object and the training dataset:
 print("Get the best param:\n", search.best_params_)
 print("Use the model with the new search parameters that have been automatically associated:\n", search.score(X_test, y_test))
 print("-" * 400)
+
+# TODO bonus use a pipeline with the search parameters estimators
+print("Pipeline with automatic parameter searches")

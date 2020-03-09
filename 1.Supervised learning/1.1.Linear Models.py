@@ -46,6 +46,10 @@ print("\t"*2 + "1.1.3.1 Setting regularization parameter")
 print("For high-dimensional dataset LassoCV is preferable")
 print("For dataset with more sample than features LassoLarsIC is preferable")
 print("-" * 200)
+print("\t"*1 + "1.1.3 Multi-task Lasso")
+print("It use with L1 and L2 norm")
+print("It estimate sparse coefficients for multiple regression problems")
+print("-" * 200)
 
 
 

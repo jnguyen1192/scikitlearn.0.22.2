@@ -22,3 +22,23 @@ print("Dataset X with 2 features and 2 samples:\n", X)
 print("Transform the dataset unsing a transformer object:\n", StandardScaler().fit(X).transform(X))
 print("-" * 400)
 
+print("PIPELINES: CHAINNING PRE-PROCESSORS AND ESTIMATORS")
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+pipe = make_pipeline(StandardScaler(), LogisticRegression(random_state=0))
+print("Pipeline:\n", pipe)
+X, y = load_iris(return_X_y=True)
+print("Iris dataset X:\n", X[:5])
+print("Iris predictions y:\n", y[:5])
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+print("Separate the dataset into trainset and testset...")
+print("Iris dataset train X_train:\n", X_train[:5])
+print("Iris predictions train y_train:\n", y_train[:5])
+print("Iris dataset test X_test:\n", X_test[:5])
+print("Iris predictions test y_test:\n", y_test[:5])
+print("Fit the pipeline:\n", pipe.fit(X_train, y_train))
+print("Get the score using the testset:\n", accuracy_score(pipe.predict(X_test), y_test))
+print("-" * 400)

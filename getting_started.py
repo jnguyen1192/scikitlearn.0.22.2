@@ -57,3 +57,31 @@ print("Use cross validation on dataset X with prediction y using 5 fold CV\n:", 
 print("Get the test score:\n", result['test_score'])
 print("-" * 400)
 
+print("AUTOMATIC PARAMETER SEARCHES")
+from sklearn.datasets import fetch_california_housing
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.model_selection import train_test_split
+from scipy.stats import randint
+
+X, y = fetch_california_housing(return_X_y=True)
+print("California housing dataset X:\n", X[:5])
+print("California housing predictions y:\n", y[:5])
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+print("Separate the dataset into trainset and testset...")
+print("Iris dataset train X_train:\n", X_train[:5])
+print("Iris predictions train y_train:\n", y_train[:5])
+print("Iris dataset test X_test:\n", X_test[:5])
+print("Iris predictions test y_test:\n", y_test[:5])
+param_distributions = {'n_estimators': randint(1, 5),
+                       'max_depth': randint(5, 10)}
+print("Create dict with param to find with intervals\n", param_distributions)
+search = RandomizedSearchCV(estimator=RandomForestRegressor(random_state=0),
+                            n_iter=5,
+                            param_distributions=param_distributions,
+                            random_state=0)
+print("Create the object to search the good parameters using a specify estimator:\n", search)
+print("Search the parameters using the previous object and the training dataset:\n", search.fit(X_train, y_train))
+print("Get the best param:\n", search.best_params_)
+print("Use the model with the new search parameters that have been automatically associated:\n", search.score(X_test, y_test))
+print("-" * 400)

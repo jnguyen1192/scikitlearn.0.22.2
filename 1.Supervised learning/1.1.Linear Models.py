@@ -50,6 +50,8 @@ print("\t"*1 + "1.1.3 Multi-task Lasso")
 print("It use with L1 and L2 norm")
 print("It estimate sparse coefficients for multiple regression problems")
 print("-" * 200)
+print("\t"*1 + "1.1.4 Elastic-Net")
+print("Useful when there are multiple features which are correlated with one another")
 
 
 

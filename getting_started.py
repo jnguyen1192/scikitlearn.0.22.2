@@ -42,3 +42,18 @@ print("Iris predictions test y_test:\n", y_test[:5])
 print("Fit the pipeline:\n", pipe.fit(X_train, y_train))
 print("Get the score using the testset:\n", accuracy_score(pipe.predict(X_test), y_test))
 print("-" * 400)
+
+print("MODEL EVALUATION")
+from sklearn.datasets import make_regression
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_validate
+X, y = make_regression(n_samples=1000, random_state=0)
+print("Create dataset X for a regression:\n", X[:5][:5])
+print("Create prediction y for a regression:\n", y[:5])
+lr = LinearRegression()
+print("Create Linear Regression classifier\n", lr)
+result = cross_validate(lr, X, y)
+print("Use cross validation on dataset X with prediction y using 5 fold CV\n:", result)
+print("Get the test score:\n", result['test_score'])
+print("-" * 400)
+

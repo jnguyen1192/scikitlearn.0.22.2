@@ -81,17 +81,22 @@ print("Get the score:\n", regr.predict([0, 0]))
 print("Useful when there are multiple features which are correlated with one another")
 print("-" * 200)
 print("\t"*1 + "1.1.6 Multi task Elastic-Net")
+print("It use mixed L1 and L2-norm and L2-norm for regularization")
 from sklearn import linear_model
 clf = linear_model.MultiTaskElasticNet(alpha=0.1)
 print("Create multitaskelasticnet model:\n", clf)
 print("Training of multitaskelasticnet model:\n", clf.fit([[0,0], [1, 1], [2, 2]], [[0, 0], [1, 1], [2, 2]]))
 print("Get the coefficient W:\n", clf.coef_)
 print("Get the interception alpha:\n", clf.intercept_)
-print("It use mixed L1 and L2-norm and L2-norm for regularization")
 print("It estimate sparse coefficients for multiple regression problems too")
 print("-" * 200)
-
-
-
+print("\t"*1 + "1.1.7 Least Angle Regression")
+print("It proceeds in a direction equiangular between features during each step of the regression")
+from sklearn import linear_model
+reg = linear_model.Lars(n_nonzero_coefs=1)
+print("Create Lars model:\n", reg)
+print("Train Lars model:\n", reg.fit([[-1, 1], [0, 0], [1, 1]], [-1.1111, 0, -1.1111]))
+print("Get the coef W:\n", reg.coef_)
+print("It is sensitive to the effects of noise")
 
 

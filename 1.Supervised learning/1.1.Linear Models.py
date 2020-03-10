@@ -68,7 +68,16 @@ print("Get the intercept alpha:\n", clf.intercept_)
 print("It estimate sparse coefficients for multiple regression problems")
 print("-" * 200)
 print("\t"*1 + "1.1.5 Elastic-Net")
-
+from sklearn.linear_model import ElasticNet
+from sklearn.datasets import make_regression
+X, y = make_regression(n_features=2, random_state=0)
+print("Create dataset X with prediction y:\n", X[:1], y[:1])
+regr = ElasticNet(random_state=0)
+print("Create ElasticNet model:\n", regr)
+print("Train ElasticNet model:\n", regr.fit(X, y))
+print("Get the coef W:\n", regr.coef_)
+print("Get the intercept alpha:\n", regr.intercept_)
+print("Get the score:\n", regr.predict([0, 0]))
 print("Useful when there are multiple features which are correlated with one another")
 print("-" * 200)
 print("\t"*1 + "1.1.6 Multi task Elastic-Net")

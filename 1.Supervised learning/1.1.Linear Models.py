@@ -98,5 +98,14 @@ print("Create Lars model:\n", reg)
 print("Train Lars model:\n", reg.fit([[-1, 1], [0, 0], [1, 1]], [-1.1111, 0, -1.1111]))
 print("Get the coef W:\n", reg.coef_)
 print("It is sensitive to the effects of noise")
-
+print("-" * 200)
+print("\t"*1 + "1.1.8 LARS Lasso")
+print("It gives an exact solution based on piecewise linear as a function of the norm of its coefficients")
+from sklearn import linear_model
+reg = linear_model.LassoLars(alpha=0.01)
+print("Create Lasso Lars model:\n", reg)
+print("Train Lasso Lars model:\n", reg.fit([[-1, 1], [0, 0], [1, 1]], [-1, 0, -1]))
+print("Get the coef W:\n", reg.coef_)
+print("-" * 200)
+print("\t"*1 + "1.1.8 LARS Lasso")
 

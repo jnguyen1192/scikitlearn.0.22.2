@@ -47,7 +47,7 @@ print("For high-dimensional dataset LassoCV is preferable")
 from sklearn.linear_model import LassoCV
 from sklearn.datasets import make_regression
 X, y = make_regression(noise=4, random_state=0)
-print("Get dataset X with prediction y:\n", X, y)
+print("Get dataset X with prediction y:\n", X[:1], y[:5])
 reg = LassoCV(cv=5, random_state=0).fit(X, y)
 print("Train the model LassoCV with 5-fold CV:\n", reg)
 print("Get the score:\n", reg.score(X, y))
@@ -56,6 +56,24 @@ print("For dataset with more sample than features LassoLarsIC is preferable")
 print("-" * 200)
 print("\t"*1 + "1.1.4 Multi-task Lasso")
 print("It use with L1 and L2 norm")
+import numpy as np
+from sklearn.linear_model import MultiTaskLasso
+rng = np.random.RandomState(42)
+n_samples, n_features, n_tasks = 100, 30, 40
+print("Prepare the dataset using nb samples, features and tasks:\n:", n_samples, n_features, n_tasks)
+n_relevant_features = 5
+print("Prepare the nb relevant features:\n", n_relevant_features)
+coef = np.zeros((n_tasks, n_features))
+print("Initialise the coef:\n", coef)
+times = np.linspace(0, 2 * np.pi, n_tasks)
+print("Prepare the times:\n", times)
+for k in range(n_relevant_features):
+    coef[:, k] = np.sin((1. + rng.randn(1, 1)) * times + 3 * rng.randn(1, 1))
+print("Fufill the coef using relevant features:\n", coef)
+X = rng.randn(n_samples, n_features)
+Y = np.dot(X, coef.T) + rng.randn(n_samples, n_tasks)
+print("Fufill the dataset X and the prediction Y using previous parameters:\n", X[:1], Y[:1])
+print("The coef obtains after training of MultiTaskLasso:\n", MultiTaskLasso(alpha=1.).fit(X, Y).coef_)
 print("It estimate sparse coefficients for multiple regression problems")
 print("-" * 200)
 print("\t"*1 + "1.1.5 Elastic-Net")

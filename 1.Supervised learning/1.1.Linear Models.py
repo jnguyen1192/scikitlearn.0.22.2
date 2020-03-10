@@ -44,6 +44,14 @@ print("Training linear model with lasso using dataset X_train and prediction y_t
 print("Get the score using prediction y_test:\n", reg.predict([[1, 1]]))
 print("\t"*2 + "1.1.3.1 Setting regularization parameter")
 print("For high-dimensional dataset LassoCV is preferable")
+from sklearn.linear_model import LassoCV
+from sklearn.datasets import make_regression
+X, y = make_regression(noise=4, random_state=0)
+print("Get dataset X with prediction y:\n", X, y)
+reg = LassoCV(cv=5, random_state=0).fit(X, y)
+print("Train the model LassoCV with 5-fold CV:\n", reg)
+print("Get the score:\n", reg.score(X, y))
+print("Get the prediction using the dataset:\n", reg.predict(X[:1, ]))
 print("For dataset with more sample than features LassoLarsIC is preferable")
 print("-" * 200)
 print("\t"*1 + "1.1.4 Multi-task Lasso")
